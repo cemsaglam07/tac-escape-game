@@ -7,10 +7,14 @@
 {% block main %}
     <form action="/process" enctype="multipart/form-data" method="post">
         <div class="form-group" "text-align: center;">
-            <input type="text" name="group" class="form-control" placeholder="Group Name" style="color: #e21f1d; background-color: #eee3fb;" autocomplete="off" autofocus>
-            <input type="text" name="question" class="form-control" placeholder="Question No" style="color: #e21f1d; background-color: #eee3fb;" autocomplete="off" autofocus>
-            <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1">
-        </div>
+        <label>
+            <input type="text" name="group" class="form-control" placeholder="Group Name" style="color: #e21f1d; background-color: #eee3fb;" autocomplete="off" autofocus required>
+        </label>
+        <br>
+        <label>
+            <input type="text" name="question" class="form-control" placeholder="Question No" style="color: #e21f1d; background-color: #eee3fb;" autocomplete="off" autofocus required>
+        </label>
+        <input type="file" name="file" class="form-control-file" id="exampleFormControlFile1" required>
         <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
     </form>
 {% endblock %}
