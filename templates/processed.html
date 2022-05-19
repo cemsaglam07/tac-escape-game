@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    File Output
+{% endblock %}
+
+{% block main %}
+    <p style="color:green; font-weight:bold">Result: </p>
+    <div class="alert alert-dark" style="background-color: #eee3fb; text-align: justify; text-justify: inter-word;" role="alert">
+        {% for resline in returned %}
+            <p>{{ resline }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

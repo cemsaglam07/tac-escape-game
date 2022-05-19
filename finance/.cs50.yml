@@ -1,8 +1,0 @@
-check50:
-  checks:
-    multiline hello world:
-      - run: python3 multi_hello.py
-        stdout: | # expect Hello\nWorld!\n in stdout
-          Hello
-          World!
-        exit: 0
