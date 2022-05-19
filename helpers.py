@@ -1,7 +1,4 @@
-import os
-import requests
-import urllib.parse
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, session
 from functools import wraps
 
 
@@ -45,7 +42,7 @@ def valid_question(question):
     except:
         return ""
 
-    if 1 <= question <= 10:
+    if 1 <= question <= 12:
         return str(question)
     else:
         return ""
