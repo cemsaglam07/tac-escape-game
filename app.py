@@ -1,6 +1,6 @@
 import os
 import time
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -58,7 +58,7 @@ def process():
         # query database for question and method
         group = valid_group(request.form.get("group"))
         question = valid_question(request.form.get("question"))
-        # Ensure method is method
+        # ensure method is method
         if group == "":
             return apology("group name not valid", 400)
         if question == "":
@@ -67,11 +67,10 @@ def process():
         if 'file' not in request.files:
             return apology("no file part", 400)
         file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
+        # if user does not select file, browser also submit an empty part without filename
         if not file:
             return apology("did you upload a file?", 400)
-        if file.filename == '':
+        if file.filename == "":
             return apology("no selected file", 400)
         if not allowed_file(file.filename):
             return apology("the file type is not permitted", 400)
@@ -81,16 +80,16 @@ def process():
         given = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         with open(given, "r") as f:
             attempt = f.read()
-        returned = control(question, os.path.join(app.config['UPLOAD_FOLDER'], filename), attempt)
-        with open(returned, "r") as f:
+        returned_file = control(question, os.path.join(app.config['UPLOAD_FOLDER'], filename), attempt)
+        with open(returned_file, "r") as f:
             returned = f.read().splitlines()
+        os.remove(returned_file)
         return render_template("processed.html", returned=returned)
 
-    # user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("process.html")
 
-
+# Pages for questions will remain private until the contest is over.
 
 def errorhandler(e):
     """Handle error"""
